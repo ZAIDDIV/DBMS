@@ -1,36 +1,60 @@
-# byte-compiled / optimized / DLL files
+# Python
 __pycache__/
 *.py[cod]
+*.pyo
+*.pyd
+.Python
 
-# tests and coverage
-*.pytest_cache
-.coverage
+# Environment & secrets
+.env
+.env.*
+*.env
 
-# database & logs
+# Database
 *.db
 *.sqlite3
 *.log
+db.sqlite3
 
-# venv
-env
-venv
+# Virtual environments
+env/
+venv/
+ENV/
+.venv/
 
-# other
+# Migrations (optional - remove if you want to push migrations)
+# migrations/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
 .DS_Store
+Thumbs.db
 
-# sphinx docs 
-_build
-_static
-_templates
+# Tests
+*.pytest_cache
+.coverage
+htmlcov/
 
-# javascript
+# Build
+dist/
+build/
+*.egg-info/
+
+# Javascript
 package-lock.json
-.vscode/symbols.json
-
+node_modules/
 apps/static/assets/node_modules
 apps/static/assets/yarn.lock
 apps/static/assets/.temp
 
-README_bk.md
+# Sphinx docs
+_build
+_static
+_templates
 
-.env
+README_bk.md

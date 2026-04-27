@@ -9,9 +9,39 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) standard
 
 ## [Unreleased] — In Progress
 ### 🔄 Currently Building
-- Role-based login system (Developer / Admin / Cashier)
-- Custom sidebar navigation for ElectroStock modules
 - Admin dashboard with real ElectroStock stats
+- Product management module (add/edit/delete + images)
+- Stock tracking + low stock alerts
+
+---
+
+## [Day 3] — 2026-04-28
+
+### ✅ Added
+- `role` field added to `Users` model — supports `developer`, `admin`, `cashier`
+- Role-based login system fully implemented — each role redirects after login
+- Helper methods added to Users model: `is_admin()`, `is_developer()`, `is_cashier()`
+- Custom route decorators added: `@admin_required`, `@cashier_required`, `@developer_required`
+- 3 system accounts created in MySQL: `developer`, `admin`, `cashier`
+- Roles assigned in MySQL for all 3 accounts
+- **ElectroStock sidebar** built and deployed — replaces CoreUI default menu completely
+- Sidebar is **role-aware** — each user sees only what they're allowed to access:
+  - Developer sees everything — Admin Panel + Cashier Panel + Developer tools
+  - Admin sees Admin Panel + Cashier Panel
+  - Cashier sees Cashier Panel only
+- `current_user` passed to all templates for role-based rendering
+- `pymysql.install_as_MySQLdb()` added to `apps/__init__.py` to fix MySQLdb import error
+- `python-dotenv` installed — `.env` now loads properly on startup
+
+### 🔧 Fixed
+- Fixed `ModuleNotFoundError: No module named 'MySQLdb'` — resolved via pymysql as MySQLdb
+- Fixed migrations folder missing — ran `flask db init` + `flask db migrate` + `flask db upgrade`
+- Fixed Flask not detecting app — set `FLASK_APP=run.py` via `set` command
+
+### 📝 Notes
+- Sidebar uses Jinja2 `{% if current_user.role %}` conditions for dynamic rendering
+- All 3 role accounts are live in MySQL `electrostock` database
+- `.env` is gitignored — MySQL credentials never pushed to GitHub
 
 ---
 
@@ -76,7 +106,6 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) standard
 
 | Day | Planned Feature |
 |-----|----------------|
-| Day 3 | Role-based login — Dev / Admin / Cashier |
 | Day 4 | Product management — add / edit / delete + images |
 | Day 5 | Stock tracking + low-stock alerts |
 | Day 6 | Supplier management + payment tracking |
