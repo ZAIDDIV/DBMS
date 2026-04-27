@@ -37,13 +37,20 @@ def login():
         # Locate user
         user = Users.query.filter_by(username=username).first()
 
-        # Check the password
+# Check the password
         if user and verify_pass(password, user.password):
 
             login_user(user)
-            return redirect(url_for('authentication_blueprint.route_default'))
 
-        # Something (user or pass) is not ok
+            # Redirect based on role
+            if user.role == 'developer':
+                return redirect(url_for('home_blueprint.index'))
+            elif user.role == 'admin':
+                return redirect(url_for('home_blueprint.index'))
+            elif user.role == 'cashier':
+                return redirect(url_for('home_blueprint.index'))
+            else:
+                return redirect(url_for('home_blueprint.index'))
         return render_template('accounts/login.html',
                                msg='Wrong user or password',
                                form=login_form)

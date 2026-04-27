@@ -3,12 +3,13 @@
 Copyright (c) 2019 - present AppSeed.us
 """
 
-import os
-
-from flask import Flask
-from flask_login import LoginManager
-from flask_sqlalchemy import SQLAlchemy
 from importlib import import_module
+from flask_sqlalchemy import SQLAlchemy
+from flask_login import LoginManager
+from flask import Flask
+import os
+import pymysql
+pymysql.install_as_MySQLdb()
 
 
 db = SQLAlchemy()
@@ -34,11 +35,12 @@ def configure_database(app):
             db.create_all()
         except Exception as e:
 
-            print('> Error: DBMS Exception: ' + str(e) )
+            print('> Error: DBMS Exception: ' + str(e))
 
             # fallback to SQLite
             basedir = os.path.abspath(os.path.dirname(__file__))
-            app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'db.sqlite3')
+            app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI = 'sqlite:///' + \
+                os.path.join(basedir, 'db.sqlite3')
 
             print('> Fallback to SQLite ')
             db.create_all()

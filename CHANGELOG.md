@@ -1,76 +1,99 @@
-# Change Log
+# 📋 Changelog — ElectroStock
 
-## [1.0.9] 2025-04-01
-### Changes
+All notable changes to this project are documented here.  
+Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) standards.
 
-- Update RM (minor)
+> 🔴 **Live Build** — updated daily as features are pushed.
 
-## [1.0.8] 2023-10-07
-### Changes
+---
 
-- Update Dependencies
-- Silent fallback to SQLite
-- CI/CD for Render
+## [Unreleased] — In Progress
+### 🔄 Currently Building
+- Role-based login system (Developer / Admin / Cashier)
+- Custom sidebar navigation for ElectroStock modules
+- Admin dashboard with real ElectroStock stats
 
-## [1.0.7] 2022-06-01
-### Improvements
+---
 
-- Built with [CoreUI Generator](https://appseed.us/generator/coreui/)
-  - Timestamp: `2022-06-01 09:08`
+## [Day 2] — 2026-04-17
 
-## [1.0.6] 2022-01-16
-### Improvements
+### ✅ Added
+- MySQL 8.0 installed and configured on local machine
+- `electrostock` database created in MySQL
+- Flask app successfully connected to MySQL using PyMySQL
+- `.env` file configured with MySQL credentials (DB_ENGINE, DB_NAME, DB_HOST, DB_PORT, DB_USERNAME, DB_PASS)
+- Installed Python packages: `pymysql`, `cryptography`
 
-- Bump Flask Codebase to [v2stable.0.1](https://github.com/app-generator/boilerplate-code-flask-dashboard/releases)
-- Dependencies update (all packages) 
-  - Flask==2.0.2 (latest stable version)
-  - flask_wtf==1.0.0
-  - jinja2==3.0.3
-  - flask-restx==0.5.1
-- Forms Update:
-  - Replace `TextField` (deprecated) with `StringField`
+### 🔧 Fixed
+- Resolved `flask_minify` incompatibility with Python 3.13 — commented out Flask-Minify from `run.py`
+- Fixed `before_first_request` AttributeError by downgrading Flask to `2.2.5` and Werkzeug to `2.2.3`
+- Fixed `ModuleNotFoundError: No module named 'flask_wtf'` — installed `flask-wtf`
+- Fixed MySQL PATH issue on Windows — added MySQL bin to system PATH via `setx`
 
-## [1.0.5] 2021-12-03
-### Improvements
+### 📝 Notes
+- MySQL root credentials stored securely in `.env` file
+- `.env` is gitignored — never pushed to GitHub
 
-- Bump UI: CoreUI v4.1.0
+---
 
-## [1.0.4] 2021-11-09
-### Improvements
+## [Day 1] — 2026-04-14
 
-- Bump Codebase: [Flask Dashboard](https://github.com/app-generator/boilerplate-code-flask-dashboard) v2.0.0
-  - Dependencies update (all packages) 
-    - Flask==2.0.1 (latest stable version)
-- Better Code formatting
-- Improved Files organization
-- Optimize imports
-- Docker Scripts Update
-- Gulp Tooling  (SASS Compilation)
-- Fix **ImportError: cannot import name 'TextField' from 'wtforms'**
-  - Problem caused by `WTForms-3.0.0`
-  - Fix: use **WTForms==2.3.3**
+### ✅ Added
+- Project initialized — DBMS folder set up on local machine
+- Flask CoreUI open-source starter cloned into project root
+- Bootstrap 5 + CoreUI dashboard running locally at `http://127.0.0.1:5000`
+- Login & Register pages live and functional
+- Session-based authentication working out of the box
+- SQLite default database connected (temporary — replaced by MySQL in Day 2)
+- Blueprint pattern confirmed — ready for ElectroStock module structure
+- User account registered and dashboard accessible
+- Installed core dependencies: `Flask`, `Flask-SQLAlchemy`, `Flask-Login`, `flask-migrate`, `flask-wtf`, `email-validator`
 
-## [1.0.3] 2021-05-16
-### Dependencies Update
+### 📝 Notes
+- Decided to use Flask CoreUI as the frontend base instead of building CLI from scratch
+- This gives us a production-ready Bootstrap dashboard to build ElectroStock on top of
+- Old DBMS folder cleared — fresh start with Flask architecture
+- `flask_minify` skipped due to Python 3.13 `cgi` module removal — not needed in development
 
-- Bump Codebase: [Flask Dashboard](https://github.com/app-generator/boilerplate-code-flask-dashboard) v1.0.6
-- Freeze used versions in `requirements.txt`
-    - jinja2 = 2.11.3
+---
 
-## [1.0.2] 2021-03-18
-### Improvements
+## [Day 0] — 2026-04-13 — Project Planning
 
-- Freeze used versions in `requirements.txt`
-    - flask_sqlalchemy = 2.4.4
-    - sqlalchemy = 1.3.23
+### ✅ Added
+- ElectroStock concept finalized
+- Full system design documented:
+  - Two sides: Admin & Cashier
+  - Three roles: Developer, Admin, Cashier
+  - Core modules: Stock, Billing, Customers, Suppliers, Warranty, Reversals
+- Database schema planned (10 core tables)
+- Tech stack decided: Python + Flask + MySQL + CoreUI
+- GitHub repository created: `github.com/ZAIDDIV/DBMS`
+- README.md written with full project overview and daily build log
 
-## [1.0.1] 2020-06-08 
-### Improvements
+---
 
-- Bump the Core UI Kit to v3.2.0
-- Update the code-base to use latest [Flask Boilerplate](https://github.com/app-generator/boilerplate-code-flask-dashboard)
-- Update Licensing information
-- Add CHANGELOG.md to track all changes
+## 🗺️ Upcoming
 
-## [1.0.0] 2020-01-01
-### Initial Release
+| Day | Planned Feature |
+|-----|----------------|
+| Day 3 | Role-based login — Dev / Admin / Cashier |
+| Day 4 | Product management — add / edit / delete + images |
+| Day 5 | Stock tracking + low-stock alerts |
+| Day 6 | Supplier management + payment tracking |
+| Day 7 | Cashier panel + billing engine |
+| Day 8 | Bill generation + PDF receipt printing |
+| Day 9 | Customer number system + profiles |
+| Day 10 | Purchase history + returning customer flow |
+| Day 11 | Append-to-bill for same-day returns |
+| Day 12 | Warranty tracking dashboard |
+| Day 13 | Reversal / return transaction system |
+| Day 14 | Admin reports & sales analytics |
+| Day 15 | Testing, bug fixes & final polish |
+
+---
+
+<div align="center">
+
+`Built with 🔥 by ZAIDDIV — one commit at a time`
+
+</div>

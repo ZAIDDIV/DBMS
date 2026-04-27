@@ -9,6 +9,7 @@ from apps import db, login_manager
 
 from apps.authentication.util import hash_pass
 
+
 class Users(db.Model, UserMixin):
 
     __tablename__ = 'Users'
@@ -17,23 +18,30 @@ class Users(db.Model, UserMixin):
     username = db.Column(db.String(64), unique=True)
     email = db.Column(db.String(64), unique=True)
     password = db.Column(db.LargeBinary)
+    # developer, admin, cashier
+    role = db.Column(db.String(20), default='cashier')
 
     def __init__(self, **kwargs):
         for property, value in kwargs.items():
-            # depending on whether value is an iterable or not, we must
-            # unpack it's value (when **kwargs is request.form, some values
-            # will be a 1-element list)
             if hasattr(value, '__iter__') and not isinstance(value, str):
-                # the ,= unpack of a singleton fails PEP8 (travis flake8 test)
                 value = value[0]
 
             if property == 'password':
-                value = hash_pass(value)  # we need bytes here (not plain str)
+                value = hash_pass(value)
 
             setattr(self, property, value)
 
     def __repr__(self):
         return str(self.username)
+
+    def is_admin(self):
+        return self.role == 'admin'
+
+    def is_developer(self):
+        return self.role == 'developer'
+
+    def is_cashier(self):
+        return self.role == 'cashier'
 
 
 @login_manager.user_loader
