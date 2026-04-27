@@ -69,6 +69,7 @@ The system is split into two operational sides, with three distinct user roles c
 
 > 🔒 Admin password is configured by the developer at deployment. Developer retains system-level access for maintenance and debugging at all times.
 
+| 🔐 **Auth** | Role-based login — Dev / Admin / Cashier | ✅ Done |
 ---
 
 ## ✨ Core Features
