@@ -1,70 +1,71 @@
 {% extends "layouts/base-fullscreen.html" %}
-
-{% block title %} Register {% endblock %} 
-
-<!-- Specific Page CSS goes HERE  -->
+{% block title %} Register {% endblock %}
 {% block stylesheets %}{% endblock stylesheets %}
 
 {% block content %}
+<div class="min-vh-100 d-flex flex-row align-items-center" style="background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%);">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-5">
+        <div class="card shadow-lg" style="border-radius:16px; border:none;">
+          <div class="card-body p-5">
 
-    <div class="bg-light min-vh-100 d-flex flex-row align-items-center">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-md-6">
-            <div class="card mb-4 mx-4">
-              <div class="card-body p-4">
-                <h1>Register</h1>
-                <p class="text-medium-emphasis">
-                  {% if msg %}
-                    {{ msg | safe }}
-                  {% else %}              
-                    Create your account
-                  {% endif %}                  
-                </p>
+            <div class="text-center mb-4">
+              <h1 class="fw-bold" style="color:#1a1a2e;">⚡ ElectroStock</h1>
+              <p class="text-muted small">Inventory Management System</p>
+            </div>
+
+            <h5 class="fw-semibold mb-1">Create Account 🚀</h5>
+            <p class="text-medium-emphasis mb-4 small">
+              {% if msg %}
+                <span class="{% if success %}text-success{% else %}text-danger{% endif %}">{{ msg | safe }}</span>
+              {% else %}
+                Fill in your details below
+              {% endif %}
+            </p>
 
             <form role="form" method="post" action="">
+              {{ form.hidden_tag() }}
 
-              {{ form.hidden_tag() }} 
-
-                <div class="input-group mb-3"><span class="input-group-text">
-                    <svg class="icon">
-                      <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-user"></use>
-
-                    </svg></span>
-                  {{ form.username(placeholder="Username", class="form-control") }}
-                </div>
-
-                <div class="input-group mb-3"><span class="input-group-text">
-                    <svg class="icon">
-                      <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-envelope-open"></use>
-                    </svg></span>
-                  {{ form.email(placeholder="Email", class="form-control") }}
-                </div>
-
-                <div class="input-group mb-3"><span class="input-group-text">
-                    <svg class="icon">
-                      <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-lock-locked"></use>
-                    </svg></span>
-                  {{ form.password(placeholder="Password", class="form-control", type="password") }}
-                </div>
-
-                <div class="row">
-                  <div class="col-6">
-                    <button class="btn btn-block btn-success" type="submit" name="register">Create Account</button>
-                  </div>
-                  <div class="col-6 text-end">
-                    <a href="{{ url_for('authentication_blueprint.login') }}" class="btn btn-link px-0" type="button">Login</a>
-                  </div>
-                </div>
-
+              <div class="input-group mb-3">
+                <span class="input-group-text">
+                  <svg class="icon"><use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-user"></use></svg>
+                </span>
+                {{ form.username(placeholder="Username", class="form-control") }}
               </div>
-            </div>
+
+              <div class="input-group mb-3">
+                <span class="input-group-text">
+                  <svg class="icon"><use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-envelope-open"></use></svg>
+                </span>
+                {{ form.email(placeholder="Email", class="form-control") }}
+              </div>
+
+              <div class="input-group mb-4">
+                <span class="input-group-text">
+                  <svg class="icon"><use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-lock-locked"></use></svg>
+                </span>
+                {{ form.password(placeholder="Password", class="form-control", type="password") }}
+              </div>
+
+              <div class="d-grid mb-3">
+                <button class="btn btn-success fw-semibold" type="submit" name="register">Create Account</button>
+              </div>
+
+              <div class="text-center">
+                <span class="text-muted small">Already have an account? </span>
+                <a href="{{ url_for('authentication_blueprint.login') }}" class="small fw-semibold">Login</a>
+              </div>
+
+            </form>
           </div>
+        </div>
+        <div class="text-center mt-3">
+          <small class="text-white-50">Built by ZAIDDIV 🔥</small>
         </div>
       </div>
     </div>
-
+  </div>
+</div>
 {% endblock content %}
-
-<!-- Specific Page JS goes HERE  -->
 {% block javascripts %}{% endblock javascripts %}
